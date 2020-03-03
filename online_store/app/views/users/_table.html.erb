@@ -1,0 +1,32 @@
+<table class="table is-striped is-fullwidth is-hoverable">
+  <thead>
+  <tr>
+    <th><abbr title="Name">Name</abbr></th>
+    <th>Email</th>
+    <th><abbr title="Age">Age</abbr></th>
+    <th><abbr title="Age">Status</abbr></th>
+    <th><abbr title="Age">Actions</abbr></th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@users.each do |f| %>
+  <%if !f.isguest? %>
+    <tr>
+      <td><%=f.name %></td>
+      <td><%=f.email %></td>
+      <td><%=f.age %></td>
+      <% if user_pending?(f)%>
+        <td>Pending</td>
+        <%else %>
+        <td></td>
+        <%end %>
+      <td><%= link_to 'Purchase History', purchase_path(f), class: "button is-small is-link " %></td>
+      <td><%= link_to 'Edit', edit_user_path(f), class: "button is-small is-link " %></td>
+      <%if !f.isadmin?%>
+      <td><%= link_to 'Delete', f,method: :delete, data: { confirm: "Are you sure? "}, class: "button is-small is-link " %></td>
+        <%end %>
+    </tr>
+  <%end %>
+    <%end %>
+  </tbody>
+</table>

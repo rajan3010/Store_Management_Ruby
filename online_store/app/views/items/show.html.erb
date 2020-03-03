@@ -1,0 +1,23 @@
+<div class="section">
+  <div class="columns">
+    <div class="column is-4">
+      <%= image_tag @item.thumbnail.variant(resize: "320x495"), alt: "#{@item.name} #{@item.brand}" %>
+    </div>
+    <div class="column">
+      <h1 class="title is-2"><%= @item.name %><h1>
+
+        <div class="content">
+          <%= render 'item-controls', item: @item %>
+          <p><strong>Category:</strong></p>
+          <%= @item.category %>
+        </div>
+
+        <% #if admin? %>
+        <%if user_signed_in? %>
+          <%if can? :edit,@item %>
+          <%= link_to 'Edit', edit_item_path(@item) %> |
+        <% end %>
+        <%end %>
+    </div>
+  </div>
+</div>

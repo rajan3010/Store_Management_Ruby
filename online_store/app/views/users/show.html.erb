@@ -1,0 +1,9 @@
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-6">
+      <h1 class="title is-3">Users</h1>
+      <%= render 'table', book: @users %>
+    </div>
+    <%= link_to 'New User', new_user_path, class: "button is-small is-link " %>
+  </div>
+</section>

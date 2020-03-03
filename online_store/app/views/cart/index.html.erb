@@ -1,0 +1,40 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <i class="fa fa-book"></i> <%= current_user.name %>'s Cart
+      </h1>
+      <h2 class="subtitle">
+        Manage your chosen Items below
+      </h2>
+    </div>
+  </div>
+</section>
+
+<% if @cart_items.any? %>
+  <div class="item-grid">
+    <%= render @cart_items, item: @item %>
+  </div>
+  </hr>
+  </hr>
+  <div class = "columns">
+    <div class = "column">
+    <%= link_to 'Clear Cart ', clearcart_cart_path(@cart_items), method: :put, class: "button is-small is-danger is-link" %>
+   </div>
+
+    <div class ="column total has-text_right">
+      <h4 class = "title is-4">
+        <span class = "f5 has-text-grey">Total: </span> $<%= total_cost(current_user) %>
+          <%= link_to 'Checkout ', cart_add_purchase_path, data: { confirm: "Are you sure? "}, class: "button is-small is-danger is-link" %>
+      </h4>
+
+    </div>
+  </div>
+
+<% else %>
+  <article class="message">
+    <div class="message-body">You haven't added any items to your cart yet. <%= link_to 'Add some', root_path %>.</div>
+  </article>
+<% end %>
+
+</section>

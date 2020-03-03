@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <i class="fa fa-book"></i> <%= current_user.name %>'s Wishlist
+      </h1>
+      <h2 class="subtitle">
+        Manage your chosen wishlist items below
+      </h2>
+    </div>
+  </div>
+</section>
+
+<% if @wish_items.any? %>
+  <div class="item-grid">
+    <%= render @wish_items, item: @item %>
+  </div>
+<% else %>
+  <article class="message">
+    <div class="message-body">You haven't added any items to your cart yet. <%= link_to 'Add some', root_path %>.</div>
+  </article>
+<% end %>
+
+</section>

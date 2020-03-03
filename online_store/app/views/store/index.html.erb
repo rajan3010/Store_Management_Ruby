@@ -1,0 +1,7 @@
+<h1>Store#index</h1>
+
+<%@users.each do |user| %>
+  <%if can? :create,user %>
+    <p>Once only</p>
+  <%end %>
+<%end %>

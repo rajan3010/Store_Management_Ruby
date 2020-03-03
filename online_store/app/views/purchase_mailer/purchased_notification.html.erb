@@ -1,0 +1,29 @@
+<section class="section">
+    <div class="column is-6">
+      <h1 class="title is-1">Hi <%@user.name %>,</h1>
+      <p>You have successfully purchased the following items</p>
+      <table class="table is-striped is-fullwidth is-hoverable">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%@items.each.with_index do |f,index| %>
+          <tr>
+            <td><%= f.name%></td>
+            <td><%=f.brand %></td>
+            <td><%=f.category %></td>
+            <td><%=f.quantity %></td>
+            <td>$ <%=f.cost %></td
+          </tr>
+        <%end %>
+
+        </tbody>
+      </table>
+    </div>
+</section>

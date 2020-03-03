@@ -1,0 +1,31 @@
+<table class="table is-striped is-fullwidth is-hoverable">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Brand</th>
+    <th>Category</th>
+    <th>Quantity</th>
+    <th>Cost</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@purchase_items.each.with_index do |f,index| %>
+    <tr>
+      <td><%= f.name%></td>
+      <td><%=f.brand %></td>
+      <td><%=f.category %></td>
+      <td><%=f.quantity %></td>
+      <td>$ <%=f.cost %></td>
+      <%if @purchase_list[index].ispending? %>
+        <td>Pending</td>
+        <%if current_user.isadmin? %>
+          <td><%= link_to "Approve",approverequest_purchaselist_path(f),method: :put, class: "button is-small is-link" %></td>
+        <%end %>
+        <%else %>
+      <td><%= link_to "Return",returnpurchase_purchaselist_path(f),method: :put, class: "button is-small is-link" %></td>
+        <%end %>
+    </tr>
+  <%end %>
+  </tbody>
+</table>

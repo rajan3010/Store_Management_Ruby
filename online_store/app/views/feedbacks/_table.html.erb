@@ -1,0 +1,18 @@
+<table class="table is-striped is-fullwidth is-hoverable">
+  <thead>
+  <tr>
+    <th><abbr title="Name">Name</abbr></th>
+    <th>Email</th>
+    <th><abbr title="Feedback">Feedback</abbr></th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@feedbacks.each do |f| %>
+  <tr>
+    <td><%=f.user.name %></td>
+    <td><%=f.user.email %></td>
+    <td><%=f.message %></td>
+  </tr>
+    <%end %>
+  </tbody>
+</table>

@@ -1,0 +1,15 @@
+<% if @purchases.any? %>
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-6">
+      <h1 class="title is-3">Users</h1>
+      <%= render 'table', item: @purchases %>
+    </div>
+  </div>
+
+  <% else %>
+  <article class="message">
+    <div class="message-body">Looks like no items have been bought yet. <% if !current_user.isadmin?%> <%= link_to 'Buy some', cart_index_path %> <%end%>.</div>
+  </article>
+  <% end %>
+</section>

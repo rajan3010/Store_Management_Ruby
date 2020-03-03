@@ -1,0 +1,28 @@
+<div class="pageloader is-active">
+<section class="hero">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <i class="fa fa-book"></i> Online Store
+      </h1>
+      <h2 class="subtitle">
+        Check out the item collection
+      </h2>
+    </div>
+  </div>
+</section>
+
+  <section class="section">
+    <%= link_to ' Sort by cost', items_index_path(:type=>"sort", :field=>"cost") , method: :put, class: "button is-small is-danger is-link" %>
+    <%= link_to ' Sort by popularity', items_index_path(:type=>"sort", :field=>"purchase_count"), method: :put, class: "button is-small is-danger is-link" %>
+    <%= link_to ' Sort by Brand', items_index_path(:type=>"sort", :field=>"brand"), method: :put, class: "button is-small is-danger is-link" %>
+    <%= link_to ' Sort by Name', items_index_path(:type=>"sort", :field=>"name"), method: :put, class: "button is-small is-danger is-link" %>
+    <%= link_to ' Sort by availablity', items_index_path(:type=>"sort", :field=>"quantity"), method: :put, class: "button is-small is-danger is-link" %>
+
+  </section>
+<section class="section">
+  <div class="item-grid">
+    <%= render @items %>
+  </div>
+</section>
+</div>

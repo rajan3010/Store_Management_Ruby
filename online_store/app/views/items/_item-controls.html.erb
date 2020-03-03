@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+
+  <% if user_added_to_cart?(current_user, item) %>
+
+    <%= link_to 'Remove from Cart', removecart_item_path(item, type: "removecart"), method: :put, class: "button is-danger is-fullwidth" %>
+
+    <% if controller.controller_name == "item" %>
+      <%= link_to 'Buy Now', buynow_cart_path(item),method: :put, class:"button is-success is-fullwidth mt1" %>
+    <% end %>
+    <% elsif user_added_to_wish?(current_user, item) %>
+    <%= link_to 'Remove from Wishlist', removewish_item_path(item, type: "removewish"), method: :put, class: "button is-danger is-fullwidth" %>
+
+    <% if controller.controller_name == "item" %>
+      <%= link_to 'Buy Now', buynow_cart_path(item),method: :put, class:"button is-success is-fullwidth mt1" %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Add to Cart', addcart_item_path(item, type: "addcart"), method: :put, class: "button is-link is-fullwidth" %>
+    <%= link_to 'Add to Wish', addwish_item_path(item, type: "addwishlist"), method: :put, class: "button is-link is-fullwidth " %>
+  <% end %>
+
+<% else %>
+  <%= link_to 'Register to Add', new_user_registration_path, class: "button is-link is-fullwidth" %>
+<% end %>

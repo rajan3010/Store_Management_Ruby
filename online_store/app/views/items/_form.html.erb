@@ -1,0 +1,106 @@
+<div class = "columns">
+  <div class = "column is-12 is-centered">
+    <%= simple_form_for(@item) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :name, required: true, autofocus: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :cost, required: true, autofocus: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :quantity, required: true, autofocus: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="field column is-4">
+          <div class="control">
+            <label class ="label">Brand</label>
+            <div class="control has-icons-left">
+            <span class =  "select">
+              <%= f.input_field :brand, collection: Item::BRAND, prompt: "Select Brand" %>
+            </span>
+              <span class = "icon is-small is-left">
+              <i class = "fa fa-tag"></i>
+            </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field column is-4">
+          <div class="control">
+            <label class="label">Category</label>
+            <div class="control has-icons-left">
+            <span class = "select">
+              <%= f.input_field :category, collection: Item::CATEGORY, prompt: "Select Category"  %>
+            </span>
+              <span class = "icon is-small is-left">
+              <i class = "fa fa-tag"></i>
+            </span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="field column is-4">
+          <div class="control">
+            <label class = "label">Tax Slab</label>
+            <div class = "control has-icons-left">
+            <span class = "select">
+              <%= f.input_field :tax_slab, collection: Item::TAX, prompt: "Select Tax Slab" %>
+            </span>
+              <span class = "icon is-small is-left">
+              <i class = "fa fa-tag"></i>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :is_restricted? %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <%= f.input :is_age_restricted? %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <div class="file">
+            <label class="file-label">
+              <%= f.input :thumbnail, as: :file, required: true, input_html: { class: "file-input" }, wrapper: false, label: false  %>
+              <span class="file-cta">
+              <span class="file-icon">
+                <i class="fa fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a thumbnail…
+              </span>
+            </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, class:"button is-dark" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+

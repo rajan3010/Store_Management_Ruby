@@ -1,0 +1,12 @@
+Hi <%= @user.name %>,
+===============================================
+
+You have successfully purchased the following items.
+Name|Brand|Category|Quantity|Cost
+
+<%@items.each.with_index do |f,index| %>
+  <%= f.name%>|<%= f.brand%>|<%= f.category%>|<%= f.quantity%>|<%= f.cost%>
+<% end %>
+
+
+Thanks for purchasing and have a great day!

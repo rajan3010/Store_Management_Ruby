@@ -1,0 +1,58 @@
+<div class="book">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image is-3by4">
+        <%= link_to image_tag(item.thumbnail), item if item.thumbnail.attached? %>
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4"><%= item.name %></p>
+          <p class="subtitle is-6"><%= item.brand %></p>
+          <p class="subtitle is-8">$<%= item.cost %></p>
+          <p class="subtitle is-6">Availabilty:<%= item.quantity %> &nbsp Views:<%= item.purchase_count %></p>
+
+        </div>
+      </div>
+
+      <div class="content">
+        <% if user_signed_in? %>
+
+          <% if item.quantity > 0 %>
+          <% if user_added_to_wish?(current_user, item) %>
+
+            <%= link_to ' Rm /Wishlist', removewish_item_path(item, type: "removewish"), method: :put, class: "button is-small is-danger is-link" %>
+          <% else %>
+            <%= link_to 'Add to Wislist', addwish_item_path(item, type: "addwishlist"), method: :put, class: "button is-small is-link " %>
+          <% end %>
+
+          <% if user_added_to_cart?(current_user, item)  %>
+            <%= link_to 'Rm /Cart ', removecart_item_path(item, type: "removecart"), method: :put, class: "button is-small is-danger is-link" %>
+          <% else %>
+            <%= link_to 'Add to Cart', addcart_item_path(item, type: "addcart"), method: :put, class: "button is-small is-link " %>
+          <% end %>
+
+          <% if controller.controller_name == "items" %>
+            <%= link_to 'Buy Now', buynow_cart_path(item),method: :put, class:"button is-success is-fullwidth mt1" %>
+          <% end %>
+            <%else %>
+            <%= link_to 'Subscribe?', root_path, class:"button is-success is-fullwidth mt1" %>
+
+        <% end %>
+
+        <% else %>
+          <%= link_to 'Register to Add', new_user_registration_path, class: "button is-link is-fullwidth" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="controls pt2">
+    <%if user_signed_in? %>
+      <% if can? :manage, @items %>
+        <%= link_to 'Edit', edit_item_path(item), class:"button is-small is-rounded" %>
+        <%= link_to 'Delete', item, method: :delete, data: { confirm: "Are you sure? "}, class:"button is-small is-rounded" %>
+      <% end %>
+    <%end %>
+  </div>
+</div>
